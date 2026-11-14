@@ -4,32 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lunar Navigator | NASA Space Apps</title>
+    <title>Lunar Navigator | Moon Landing Site Explorer</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- 3D Model Viewer -->
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    </script>
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- STAR FIELD -->
+    <div class="stars"></div>
+    <div class="stars stars-two"></div>
+
+    <!-- NAVIGATION -->
     <header class="navbar">
 
-        <div class="logo">
-            <span class="logo-mark">◐</span>
+        <a href="#home" class="logo">
+            <span class="logo-symbol">◐</span>
             <span>LUNAR NAVIGATOR</span>
-        </div>
+        </a>
 
         <nav>
-            <a href="#home">Home</a>
-            <a href="#explore">Explore</a>
-            <a href="#compare">Compare</a>
-            <a href="#resources">Resources</a>
+            <a href="#home">HOME</a>
+            <a href="#explore">EXPLORE</a>
+            <a href="#analysis">ANALYSIS</a>
+            <a href="#compare">COMPARE</a>
+            <a href="#resources">RESOURCES</a>
         </nav>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            MISSION MODE
+        </div>
 
     </header>
 
 
-    <!-- HOME -->
+    <!-- ================= HOME ================= -->
+
     <main id="home">
 
         <section class="hero">
@@ -46,43 +62,85 @@
                     NAVIGATOR
                 </h1>
 
-                <p class="hero-description">
-                    Explore lunar landing sites and compare how
-                    sunlight and Earth visibility change with
-                    location and time.
+                <p class="hero-text">
+                    Explore candidate lunar landing sites and
+                    understand how sunlight and Earth visibility
+                    change across location and time.
                 </p>
 
                 <div class="hero-buttons">
 
-                    <a href="#explore" class="primary-button">
-                        EXPLORE THE MOON →
+                    <a href="#explore" class="btn primary">
+                        EXPLORE THE MOON
+                        <span>→</span>
                     </a>
 
-                    <a href="#compare" class="secondary-button">
+                    <a href="#compare" class="btn secondary">
                         COMPARE SITES
                     </a>
 
                 </div>
 
+                <div class="hero-info">
+
+                    <div>
+                        <span>REGION</span>
+                        <strong>LUNAR SOUTH POLE</strong>
+                    </div>
+
+                    <div>
+                        <span>MISSION FOCUS</span>
+                        <strong>LIGHT + COMMUNICATION</strong>
+                    </div>
+
+                </div>
+
             </div>
 
 
-            <!-- Moon visual -->
+            <!-- 3D MOON -->
 
-            <div class="moon-area">
+            <div class="moon-stage">
 
-                <div class="moon">
-                    <div class="moon-crater crater-1"></div>
-                    <div class="moon-crater crater-2"></div>
-                    <div class="moon-crater crater-3"></div>
-                    <div class="moon-crater crater-4"></div>
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="moon-glow"></div>
+
+                <model-viewer
+                    id="moonModel"
+                    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                    alt="Interactive 3D lunar visualization"
+                    camera-controls
+                    auto-rotate
+                    rotation-per-second="10deg"
+                    shadow-intensity="1"
+                    exposure="1"
+                    interaction-prompt="none">
+
+                </model-viewer>
+
+                <div class="moon-overlay">
+
+                    <div class="moon-tag">
+                        <span class="tag-dot"></span>
+                        3D LUNAR VIEW
+                    </div>
+
+                    <div class="moon-coordinates">
+                        SOUTH POLE REGION
+                    </div>
+
                 </div>
 
-                <div class="orbit-line"></div>
+                <div class="sun-marker">
+                    ☀
+                    <span>SUN</span>
+                </div>
 
-                <div class="moon-label">
-                    <span>MOON</span>
-                    <small>LUNAR SOUTH POLE</small>
+                <div class="earth-marker">
+                    🌍
+                    <span>EARTH</span>
                 </div>
 
             </div>
@@ -90,34 +148,40 @@
         </section>
 
 
-        <!-- Mission strip -->
+        <!-- MISSION STRIP -->
 
         <section class="mission-strip">
 
-            <div>
-                <span class="number">01</span>
-                <span>SELECT SITE</span>
+            <div class="mission-step active">
+                <span>01</span>
+                <p>SELECT SITE</p>
             </div>
 
-            <div>
-                <span class="number">02</span>
-                <span>CHOOSE DATE</span>
+            <div class="mission-line"></div>
+
+            <div class="mission-step">
+                <span>02</span>
+                <p>CHOOSE TIME</p>
             </div>
 
-            <div>
-                <span class="number">03</span>
-                <span>ANALYZE LIGHT</span>
+            <div class="mission-line"></div>
+
+            <div class="mission-step">
+                <span>03</span>
+                <p>ANALYZE LIGHT</p>
             </div>
 
-            <div>
-                <span class="number">04</span>
-                <span>COMPARE</span>
+            <div class="mission-line"></div>
+
+            <div class="mission-step">
+                <span>04</span>
+                <p>COMPARE</p>
             </div>
 
         </section>
 
 
-        <!-- EXPLORE -->
+        <!-- ================= EXPLORE ================= -->
 
         <section id="explore" class="section">
 
@@ -133,61 +197,120 @@
                 </div>
 
                 <p>
-                    Select a candidate landing site and investigate
-                    its environment before mission planning decisions
-                    are made.
+                    Select a candidate site to inspect its
+                    location and mission-planning information.
                 </p>
 
             </div>
 
 
-            <div class="explorer">
+            <div class="explorer-layout">
 
-                <div class="moon-panel">
+                <!-- MOON VIEW -->
 
-                    <div class="panel-label">
-                        LUNAR SURFACE
+                <div class="explorer-moon">
+
+                    <div class="panel-top">
+                        <span>LUNAR SURFACE</span>
+                        <span>INTERACTIVE</span>
                     </div>
 
-                    <div class="large-moon">
-                        <div class="surface-dot"></div>
+                    <div class="mini-moon">
+
+                        <div class="site-marker marker-one"
+                            data-site="0">
+                            <span></span>
+                            <label>SHACKLETON</label>
+                        </div>
+
+                        <div class="site-marker marker-two"
+                            data-site="1">
+                            <span></span>
+                            <label>MALAPERT</label>
+                        </div>
+
+                        <div class="site-marker marker-three"
+                            data-site="2">
+                            <span></span>
+                            <label>HAWORTH</label>
+                        </div>
+
                     </div>
 
                     <div class="coordinates">
-                        <span>LAT</span>
-                        <strong id="latitude">—</strong>
 
-                        <span>LON</span>
-                        <strong id="longitude">—</strong>
+                        <div>
+                            <span>LATITUDE</span>
+                            <strong id="latitude">—</strong>
+                        </div>
+
+                        <div>
+                            <span>LONGITUDE</span>
+                            <strong id="longitude">—</strong>
+                        </div>
+
                     </div>
 
                 </div>
 
 
-                <div class="site-panel">
+                <!-- SITE SELECTION -->
 
-                    <p class="panel-label">
-                        CANDIDATE SITES
-                    </p>
+                <div class="site-selector">
 
-                    <button class="site-button">
-                        SHACKLETON CRATER
+                    <div class="selector-heading">
+                        <span>CANDIDATE LANDING SITES</span>
+                        <small>05 AVAILABLE</small>
+                    </div>
+
+
+                    <button class="site-button active" data-site="0">
+                        <span class="site-number">01</span>
+                        <span>
+                            <strong>SHACKLETON CRATER</strong>
+                            <small>SOUTH POLE REGION</small>
+                        </span>
+                        <span class="arrow">→</span>
                     </button>
 
-                    <button class="site-button">
-                        MALAPERT MASSIF
+
+                    <button class="site-button" data-site="1">
+                        <span class="site-number">02</span>
+                        <span>
+                            <strong>MALAPERT MASSIF</strong>
+                            <small>SOUTH POLE REGION</small>
+                        </span>
+                        <span class="arrow">→</span>
                     </button>
 
-                    <button class="site-button">
-                        HAWORTH CRATER
+
+                    <button class="site-button" data-site="2">
+                        <span class="site-number">03</span>
+                        <span>
+                            <strong>HAWORTH CRATER</strong>
+                            <small>SOUTH POLE REGION</small>
+                        </span>
+                        <span class="arrow">→</span>
                     </button>
 
-                    <button class="site-button">
-                        AMUNDSEN CRATER
+
+                    <button class="site-button" data-site="3">
+                        <span class="site-number">04</span>
+                        <span>
+                            <strong>AMUNDSEN CRATER</strong>
+                            <small>SOUTH POLE REGION</small>
+                        </span>
+                        <span class="arrow">→</span>
                     </button>
 
-                    <button class="site-button">
-                        DE GERLACHE CRATER
+
+                    <button class="site-button" data-site="4">
+                        <span class="site-number">05</span>
+                        <span>
+                            <strong>DE GERLACHE CRATER</strong>
+                            <small>SOUTH POLE REGION</small>
+                        </span>
+                        <span class="arrow">→</span>
                     </button>
 
                 </div>
@@ -197,9 +320,72 @@
         </section>
 
 
-        <!-- ANALYSIS -->
+        <!-- ================= MISSION CONTROL ================= -->
 
-        <section class="section analysis-section">
+        <section class="mission-control section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">MISSION CONTROL</p>
+
+                    <h2>
+                        Choose your<br>
+                        scenario.
+                    </h2>
+                </div>
+
+                <p>
+                    Set the mission date and time before analyzing
+                    the selected lunar site.
+                </p>
+
+            </div>
+
+
+            <div class="control-grid">
+
+                <div class="control-card">
+
+                    <label for="missionDate">
+                        MISSION DATE
+                    </label>
+
+                    <input
+                        type="date"
+                        id="missionDate"
+                    >
+
+                </div>
+
+
+                <div class="control-card">
+
+                    <label for="missionTime">
+                        MISSION TIME
+                    </label>
+
+                    <input
+                        type="time"
+                        id="missionTime"
+                    >
+
+                </div>
+
+
+                <button id="analyzeButton" class="analyze-button">
+                    ANALYZE SITE
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ANALYSIS ================= -->
+
+        <section id="analysis" class="section analysis-section">
 
             <div class="section-heading">
 
@@ -212,10 +398,8 @@
                     </h2>
                 </div>
 
-                <p>
-                    Solar illumination and Earth visibility are
-                    critical factors when evaluating a lunar
-                    landing opportunity.
+                <p id="selectedSiteText">
+                    Select a landing site to begin analysis.
                 </p>
 
             </div>
@@ -247,7 +431,7 @@
                     <strong id="sunlightWindow">—</strong>
 
                     <small>
-                        Estimated operational sunlight
+                        Operational illumination window
                     </small>
 
                 </div>
@@ -262,7 +446,7 @@
                     <strong id="earthVisibility">—</strong>
 
                     <small>
-                        Direct-to-Earth communication
+                        Direct-to-Earth visibility
                     </small>
 
                 </div>
@@ -284,10 +468,50 @@
 
             </div>
 
+
+            <!-- VISUALIZATION -->
+
+            <div class="celestial-panel">
+
+                <div class="celestial-header">
+
+                    <span>CELESTIAL GEOMETRY</span>
+
+                    <span id="analysisStatus">
+                        WAITING FOR INPUT
+                    </span>
+
+                </div>
+
+
+                <div class="celestial-scene">
+
+                    <div class="sun-body">
+                        ☀
+                        <small>SUN</small>
+                    </div>
+
+                    <div class="light-ray ray-one"></div>
+                    <div class="light-ray ray-two"></div>
+
+                    <div class="scene-moon">
+                        🌕
+                        <span>LANDING SITE</span>
+                    </div>
+
+                    <div class="earth-body">
+                        🌍
+                        <small>EARTH</small>
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
 
 
-        <!-- COMPARE -->
+        <!-- ================= COMPARE ================= -->
 
         <section id="compare" class="section">
 
@@ -303,8 +527,8 @@
                 </div>
 
                 <p>
-                    Evaluate alternative landing sites and dates
-                    when mission requirements change.
+                    Compare two candidate sites and identify
+                    differences in their mission environment.
                 </p>
 
             </div>
@@ -312,18 +536,46 @@
 
             <div class="compare-box">
 
-                <div class="compare-column">
+                <div class="compare-site">
+
                     <span>SITE A</span>
-                    <h3>Shackleton Crater</h3>
-                    <p>South Pole Region</p>
+
+                    <h3 id="compareA">
+                        Shackleton Crater
+                    </h3>
+
+                    <p>
+                        South Pole Region
+                    </p>
+
+                    <button class="small-button">
+                        CHANGE SITE
+                    </button>
+
                 </div>
 
-                <div class="vs">VS</div>
 
-                <div class="compare-column">
+                <div class="vs">
+                    VS
+                </div>
+
+
+                <div class="compare-site">
+
                     <span>SITE B</span>
-                    <h3>Malapert Massif</h3>
-                    <p>South Pole Region</p>
+
+                    <h3>
+                        Malapert Massif
+                    </h3>
+
+                    <p>
+                        South Pole Region
+                    </p>
+
+                    <button class="small-button">
+                        CHANGE SITE
+                    </button>
+
                 </div>
 
             </div>
@@ -331,7 +583,7 @@
         </section>
 
 
-        <!-- RESOURCES -->
+        <!-- ================= RESOURCES ================= -->
 
         <section id="resources" class="section resources-section">
 
@@ -347,8 +599,8 @@
                 </div>
 
                 <p>
-                    The application will use NASA-supported lunar
-                    datasets and scientific resources.
+                    Scientific resources can support future versions
+                    of the navigator.
                 </p>
 
             </div>
@@ -356,37 +608,96 @@
 
             <div class="resources-grid">
 
-                <div class="resource-card">
+                <a
+                    class="resource-card"
+                    href="https://science.nasa.gov/mission/lro/"
+                    target="_blank"
+                    rel="noopener"
+                >
                     <span>01</span>
-                    <h3>Moon Trek</h3>
-                    <p>
-                        Lunar visualization and exploration.
-                    </p>
-                </div>
 
-                <div class="resource-card">
+                    <h3>
+                        LRO
+                    </h3>
+
+                    <p>
+                        Lunar Reconnaissance Orbiter.
+                    </p>
+
+                    <strong>
+                        OPEN RESOURCE →
+                    </strong>
+
+                </a>
+
+
+                <a
+                    class="resource-card"
+                    href="https://science.nasa.gov/mission/lro/lola/"
+                    target="_blank"
+                    rel="noopener"
+                >
                     <span>02</span>
-                    <h3>LRO</h3>
-                    <p>
-                        Lunar Reconnaissance Orbiter data.
-                    </p>
-                </div>
 
-                <div class="resource-card">
-                    <span>03</span>
-                    <h3>LOLA</h3>
+                    <h3>
+                        LOLA
+                    </h3>
+
                     <p>
                         Lunar elevation and topography.
                     </p>
-                </div>
 
-                <div class="resource-card">
-                    <span>04</span>
-                    <h3>LROC</h3>
+                    <strong>
+                        OPEN RESOURCE →
+                    </strong>
+
+                </a>
+
+
+                <a
+                    class="resource-card"
+                    href="https://science.nasa.gov/mission/lro/spacecraft-and-instruments/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>03</span>
+
+                    <h3>
+                        LROC
+                    </h3>
+
                     <p>
-                        High-resolution lunar imagery.
+                        Lunar surface imagery.
                     </p>
-                </div>
+
+                    <strong>
+                        OPEN RESOURCE →
+                    </strong>
+
+                </a>
+
+
+                <a
+                    class="resource-card"
+                    href="https://trek.nasa.gov/moon/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>04</span>
+
+                    <h3>
+                        MOON TREK
+                    </h3>
+
+                    <p>
+                        Explore the lunar surface.
+                    </p>
+
+                    <strong>
+                        OPEN RESOURCE →
+                    </strong>
+
+                </a>
 
             </div>
 
@@ -399,8 +710,8 @@
 
     <footer>
 
-        <div>
-            LUNAR NAVIGATOR
+        <div class="footer-logo">
+            ◐ LUNAR NAVIGATOR
         </div>
 
         <p>
