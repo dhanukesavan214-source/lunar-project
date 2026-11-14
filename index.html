@@ -2,906 +2,419 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Lunar Landing Site Navigator — an interactive tool for exploring potential lunar landing sites."
-    >
-
-    <title>Lunar Landing Site Navigator</title>
+    <title>Lunar Navigator | NASA Space Apps</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- Model Viewer -->
-    <script
-        type="module"
-        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-    </script>
 </head>
 
 <body>
 
-<!-- ==============================
-     NAVIGATION
-================================ -->
+    <!-- Navigation -->
+    <header class="navbar">
 
-<header class="navbar">
-
-    <a href="#home" class="logo">
-        <span class="logo-mark">◐</span>
-        LUNAR NAVIGATOR
-    </a>
-
-    <nav class="nav-links">
-
-        <a href="#home">Home</a>
-        <a href="#explore">Explore</a>
-        <a href="#analysis">Analysis</a>
-        <a href="#compare">Compare</a>
-        <a href="#resources">Resources</a>
-
-    </nav>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu">
-        ☰
-    </button>
-
-</header>
-
-
-<!-- ==============================
-     MOBILE NAV
-================================ -->
-
-<div class="mobile-menu" id="mobileMenu">
-
-    <a href="#home">Home</a>
-    <a href="#explore">Explore</a>
-    <a href="#analysis">Analysis</a>
-    <a href="#compare">Compare</a>
-    <a href="#resources">Resources</a>
-
-</div>
-
-
-<!-- ==============================
-     HERO
-================================ -->
-
-<main>
-
-<section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            NASA SPACE APPS CHALLENGE 2026
+        <div class="logo">
+            <span class="logo-mark">◐</span>
+            <span>LUNAR NAVIGATOR</span>
         </div>
 
-        <h1>
-            LUNAR
-            <span>LANDING SITE</span>
-            NAVIGATOR
-        </h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#explore">Explore</a>
+            <a href="#compare">Compare</a>
+            <a href="#resources">Resources</a>
+        </nav>
 
-        <p class="hero-description">
-            Explore where — and when — we can land on the Moon.
-            Discover candidate landing locations and investigate
-            illumination, terrain, visibility and communication
-            opportunities.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a
-                href="#explore"
-                class="button button-primary">
-                EXPLORE THE MOON →
-            </a>
-
-            <a
-                href="#resources"
-                class="button button-secondary">
-                NASA RESOURCES
-            </a>
-
-        </div>
-
-    </div>
+    </header>
 
 
-    <div class="hero-moon">
+    <!-- HOME -->
+    <main id="home">
 
-        <div class="moon-glow"></div>
+        <section class="hero">
 
-        <div class="moon-orbit orbit-one"></div>
-        <div class="moon-orbit orbit-two"></div>
+            <div class="hero-content">
 
-        <div class="moon-placeholder">
-            <div class="moon-sphere">
-                <span>MOON</span>
-            </div>
-        </div>
+                <p class="eyebrow">
+                    NASA SPACE APPS CHALLENGE 2026
+                </p>
 
-    </div>
+                <h1>
+                    LUNAR<br>
+                    <span>LANDING SITE</span><br>
+                    NAVIGATOR
+                </h1>
 
-</section>
+                <p class="hero-description">
+                    Explore lunar landing sites and compare how
+                    sunlight and Earth visibility change with
+                    location and time.
+                </p>
 
+                <div class="hero-buttons">
 
-<!-- ==============================
-     MISSION STRIP
-================================ -->
+                    <a href="#explore" class="primary-button">
+                        EXPLORE THE MOON →
+                    </a>
 
-<section class="mission-strip">
+                    <a href="#compare" class="secondary-button">
+                        COMPARE SITES
+                    </a>
 
-    <div>
-        <span class="strip-number">01</span>
-        <span>EXPLORE</span>
-    </div>
-
-    <div>
-        <span class="strip-number">02</span>
-        <span>ANALYZE</span>
-    </div>
-
-    <div>
-        <span class="strip-number">03</span>
-        <span>COMPARE</span>
-    </div>
-
-    <div>
-        <span class="strip-number">04</span>
-        <span>PLAN</span>
-    </div>
-
-</section>
-
-
-<!-- ==============================
-     EXPLORE
-================================ -->
-
-<section id="explore" class="section explore-section">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            LUNAR SURFACE
-        </div>
-
-        <h2>
-            Explore the Moon
-        </h2>
-
-        <p>
-            Select a candidate landing site to inspect its
-            location and available analysis.
-        </p>
-
-    </div>
-
-
-    <div class="explorer">
-
-        <!-- Moon viewer -->
-
-        <div class="moon-viewer">
-
-            <div class="viewer-header">
-
-                <span>ORBITAL VIEW</span>
-
-                <button id="resetView">
-                    RESET VIEW
-                </button>
+                </div>
 
             </div>
 
 
-            <!--
-                Replace this model with an actual NASA-compatible
-                lunar 3D model when available.
-            -->
+            <!-- Moon visual -->
 
-            <model-viewer
-                id="moonModel"
-                src=""
-                alt="Interactive Moon"
-                camera-controls
-                auto-rotate
-                shadow-intensity="0.4"
-                exposure="0.8"
-                class="model-viewer">
+            <div class="moon-area">
 
-                <div class="model-placeholder">
+                <div class="moon">
+                    <div class="moon-crater crater-1"></div>
+                    <div class="moon-crater crater-2"></div>
+                    <div class="moon-crater crater-3"></div>
+                    <div class="moon-crater crater-4"></div>
+                </div>
 
-                    <div class="placeholder-moon">
-                        ◐
+                <div class="orbit-line"></div>
+
+                <div class="moon-label">
+                    <span>MOON</span>
+                    <small>LUNAR SOUTH POLE</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Mission strip -->
+
+        <section class="mission-strip">
+
+            <div>
+                <span class="number">01</span>
+                <span>SELECT SITE</span>
+            </div>
+
+            <div>
+                <span class="number">02</span>
+                <span>CHOOSE DATE</span>
+            </div>
+
+            <div>
+                <span class="number">03</span>
+                <span>ANALYZE LIGHT</span>
+            </div>
+
+            <div>
+                <span class="number">04</span>
+                <span>COMPARE</span>
+            </div>
+
+        </section>
+
+
+        <!-- EXPLORE -->
+
+        <section id="explore" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">01 / EXPLORATION</p>
+
+                    <h2>
+                        Explore the<br>
+                        lunar surface.
+                    </h2>
+                </div>
+
+                <p>
+                    Select a candidate landing site and investigate
+                    its environment before mission planning decisions
+                    are made.
+                </p>
+
+            </div>
+
+
+            <div class="explorer">
+
+                <div class="moon-panel">
+
+                    <div class="panel-label">
+                        LUNAR SURFACE
                     </div>
 
-                    <p>
-                        INTERACTIVE MOON
+                    <div class="large-moon">
+                        <div class="surface-dot"></div>
+                    </div>
+
+                    <div class="coordinates">
+                        <span>LAT</span>
+                        <strong id="latitude">—</strong>
+
+                        <span>LON</span>
+                        <strong id="longitude">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="site-panel">
+
+                    <p class="panel-label">
+                        CANDIDATE SITES
                     </p>
 
+                    <button class="site-button">
+                        SHACKLETON CRATER
+                    </button>
+
+                    <button class="site-button">
+                        MALAPERT MASSIF
+                    </button>
+
+                    <button class="site-button">
+                        HAWORTH CRATER
+                    </button>
+
+                    <button class="site-button">
+                        AMUNDSEN CRATER
+                    </button>
+
+                    <button class="site-button">
+                        DE GERLACHE CRATER
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYSIS -->
+
+        <section class="section analysis-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">02 / ANALYSIS</p>
+
+                    <h2>
+                        Understand the<br>
+                        environment.
+                    </h2>
+                </div>
+
+                <p>
+                    Solar illumination and Earth visibility are
+                    critical factors when evaluating a lunar
+                    landing opportunity.
+                </p>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+                <div class="analysis-card">
+
+                    <span class="card-number">01</span>
+
+                    <p>SOLAR ELEVATION</p>
+
+                    <strong id="solarElevation">—</strong>
+
                     <small>
-                        3D lunar model will appear here
+                        Sun position above local horizon
                     </small>
 
                 </div>
 
-            </model-viewer>
 
+                <div class="analysis-card">
 
-            <div class="viewer-footer">
+                    <span class="card-number">02</span>
 
-                <span>
-                    ● LANDING SITES
-                </span>
+                    <p>SUNLIGHT WINDOW</p>
 
-                <span>
-                    DRAG TO ROTATE
-                </span>
+                    <strong id="sunlightWindow">—</strong>
 
-                <span>
-                    SCROLL TO ZOOM
-                </span>
+                    <small>
+                        Estimated operational sunlight
+                    </small>
 
-            </div>
-
-        </div>
-
-
-        <!-- Site list -->
-
-        <aside class="site-list">
-
-            <div class="panel-title">
-
-                <div>
-                    <span class="eyebrow">
-                        CANDIDATE SITES
-                    </span>
-
-                    <h3>
-                        Landing Locations
-                    </h3>
                 </div>
 
-                <span id="siteCount">
-                    0
-                </span>
 
-            </div>
+                <div class="analysis-card">
 
+                    <span class="card-number">03</span>
 
-            <div id="siteListContainer"
-                 class="site-list-container">
-            </div>
+                    <p>EARTH VISIBILITY</p>
 
-        </aside>
+                    <strong id="earthVisibility">—</strong>
 
-    </div>
+                    <small>
+                        Direct-to-Earth communication
+                    </small>
 
-</section>
-
-
-<!-- ==============================
-     ANALYSIS
-================================ -->
-
-<section id="analysis" class="section analysis-section">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            MISSION ANALYSIS
-        </div>
-
-        <h2>
-            Landing Site Analysis
-        </h2>
-
-        <p>
-            Select a location to examine the available
-            scientific parameters.
-        </p>
-
-    </div>
-
-
-    <div class="analysis-container">
-
-        <div class="selected-site">
-
-            <div class="selected-label">
-                SELECTED LOCATION
-            </div>
-
-            <h3 id="selectedSiteName">
-                No site selected
-            </h3>
-
-            <p id="selectedSiteRegion">
-                Select a landing site from the explorer.
-            </p>
-
-
-            <div class="coordinates">
-
-                <div>
-                    <span>LATITUDE</span>
-                    <strong id="selectedLatitude">
-                        —
-                    </strong>
                 </div>
 
-                <div>
-                    <span>LONGITUDE</span>
-                    <strong id="selectedLongitude">
-                        —
-                    </strong>
+
+                <div class="analysis-card">
+
+                    <span class="card-number">04</span>
+
+                    <p>TIME TO SUNSET</p>
+
+                    <strong id="sunsetTime">—</strong>
+
+                    <small>
+                        Remaining illumination
+                    </small>
+
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <div class="analysis-grid">
+        <!-- COMPARE -->
 
+        <section id="compare" class="section">
 
-            <article class="analysis-card">
-
-                <span class="analysis-icon">
-                    △
-                </span>
+            <div class="section-heading">
 
                 <div>
-                    <span class="card-label">
-                        TERRAIN
-                    </span>
+                    <p class="eyebrow">03 / COMPARISON</p>
 
-                    <h3>
-                        Elevation & Slope
-                    </h3>
+                    <h2>
+                        Compare<br>
+                        possibilities.
+                    </h2>
+                </div>
 
-                    <p id="terrainValue">
-                        Data unavailable
+                <p>
+                    Evaluate alternative landing sites and dates
+                    when mission requirements change.
+                </p>
+
+            </div>
+
+
+            <div class="compare-box">
+
+                <div class="compare-column">
+                    <span>SITE A</span>
+                    <h3>Shackleton Crater</h3>
+                    <p>South Pole Region</p>
+                </div>
+
+                <div class="vs">VS</div>
+
+                <div class="compare-column">
+                    <span>SITE B</span>
+                    <h3>Malapert Massif</h3>
+                    <p>South Pole Region</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESOURCES -->
+
+        <section id="resources" class="section resources-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">04 / DATA</p>
+
+                    <h2>
+                        NASA<br>
+                        resources.
+                    </h2>
+                </div>
+
+                <p>
+                    The application will use NASA-supported lunar
+                    datasets and scientific resources.
+                </p>
+
+            </div>
+
+
+            <div class="resources-grid">
+
+                <div class="resource-card">
+                    <span>01</span>
+                    <h3>Moon Trek</h3>
+                    <p>
+                        Lunar visualization and exploration.
                     </p>
                 </div>
 
-                <span class="status">
-                    NASA DATA
-                </span>
-
-            </article>
-
-
-            <article class="analysis-card">
-
-                <span class="analysis-icon">
-                    ☼
-                </span>
-
-                <div>
-                    <span class="card-label">
-                        ILLUMINATION
-                    </span>
-
-                    <h3>
-                        Solar Conditions
-                    </h3>
-
-                    <p id="illuminationValue">
-                        Data unavailable
+                <div class="resource-card">
+                    <span>02</span>
+                    <h3>LRO</h3>
+                    <p>
+                        Lunar Reconnaissance Orbiter data.
                     </p>
                 </div>
 
-                <span class="status">
-                    ANALYSIS
-                </span>
-
-            </article>
-
-
-            <article class="analysis-card">
-
-                <span class="analysis-icon">
-                    ◉
-                </span>
-
-                <div>
-                    <span class="card-label">
-                        EARTH
-                    </span>
-
-                    <h3>
-                        Earth Visibility
-                    </h3>
-
-                    <p id="earthValue">
-                        Data unavailable
+                <div class="resource-card">
+                    <span>03</span>
+                    <h3>LOLA</h3>
+                    <p>
+                        Lunar elevation and topography.
                     </p>
                 </div>
 
-                <span class="status">
-                    ANALYSIS
-                </span>
-
-            </article>
-
-
-            <article class="analysis-card">
-
-                <span class="analysis-icon">
-                    ⌁
-                </span>
-
-                <div>
-                    <span class="card-label">
-                        COMMUNICATION
-                    </span>
-
-                    <h3>
-                        Direct-to-Earth
-                    </h3>
-
-                    <p id="communicationValue">
-                        Data unavailable
+                <div class="resource-card">
+                    <span>04</span>
+                    <h3>LROC</h3>
+                    <p>
+                        High-resolution lunar imagery.
                     </p>
                 </div>
 
-                <span class="status">
-                    ANALYSIS
-                </span>
+            </div>
 
-            </article>
+        </section>
 
-
-        </div>
-
-    </div>
-
-</section>
+    </main>
 
 
-<!-- ==============================
-     DATE ANALYSIS
-================================ -->
+    <!-- FOOTER -->
 
-<section class="date-section">
-
-    <div class="date-panel">
+    <footer>
 
         <div>
-
-            <span class="eyebrow">
-                MISSION DATE
-            </span>
-
-            <h2>
-                Choose an exploration date
-            </h2>
-
-            <p>
-                Future versions will calculate illumination,
-                Sun position and communication windows for
-                the selected date.
-            </p>
-
+            LUNAR NAVIGATOR
         </div>
-
-
-        <div class="date-control">
-
-            <label for="missionDate">
-                ANALYSIS DATE
-            </label>
-
-            <input
-                type="date"
-                id="missionDate">
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==============================
-     COMPARE
-================================ -->
-
-<section id="compare" class="section compare-section">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            MISSION PLANNING
-        </div>
-
-        <h2>
-            Compare Landing Sites
-        </h2>
 
         <p>
-            Compare candidate locations using the same
-            analysis parameters.
+            NASA SPACE APPS CHALLENGE 2026
         </p>
 
-    </div>
-
-
-    <div class="comparison-table-wrapper">
-
-        <table class="comparison-table">
-
-            <thead>
-
-                <tr>
-                    <th>PARAMETER</th>
-                    <th>SITE A</th>
-                    <th>SITE B</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td>Location</td>
-                    <td id="compareA">—</td>
-                    <td id="compareB">—</td>
-                </tr>
-
-                <tr>
-                    <td>Latitude</td>
-                    <td id="latA">—</td>
-                    <td id="latB">—</td>
-                </tr>
-
-                <tr>
-                    <td>Longitude</td>
-                    <td id="lonA">—</td>
-                    <td id="lonB">—</td>
-                </tr>
-
-                <tr>
-                    <td>Terrain</td>
-                    <td>Data unavailable</td>
-                    <td>Data unavailable</td>
-                </tr>
-
-                <tr>
-                    <td>Illumination</td>
-                    <td>Data unavailable</td>
-                    <td>Data unavailable</td>
-                </tr>
-
-                <tr>
-                    <td>Communication</td>
-                    <td>Data unavailable</td>
-                    <td>Data unavailable</td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-
-<!-- ==============================
-     NASA RESOURCES
-================================ -->
-
-<section id="resources"
-         class="section resources-section">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            NASA DATA
-        </div>
-
-        <h2>
-            Scientific Resources
-        </h2>
-
-        <p>
-            Lunar Navigator is designed around NASA lunar
-            exploration resources and datasets.
-        </p>
-
-    </div>
-
-
-    <div class="resource-grid">
-
-
-        <article class="resource-card">
-
-            <div class="resource-symbol">
-                ◉
-            </div>
-
-            <span class="card-label">
-                MISSION
-            </span>
-
-            <h3>
-                Lunar Reconnaissance Orbiter
-            </h3>
-
-            <p>
-                NASA's Lunar Reconnaissance Orbiter provides
-                detailed observations of the Moon used for
-                mapping, science and exploration.
-            </p>
-
-            <a
-                href="https://science.nasa.gov/mission/lro/"
-                target="_blank"
-                rel="noopener noreferrer">
-                NASA LRO →
-            </a>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <div class="resource-symbol">
-                △
-            </div>
-
-            <span class="card-label">
-                INSTRUMENT
-            </span>
-
-            <h3>
-                LOLA
-            </h3>
-
-            <p>
-                The Lunar Orbiter Laser Altimeter provides
-                lunar topographic information including
-                elevation and surface characteristics.
-            </p>
-
-            <a
-                href="https://science.nasa.gov/mission/lro/lola/"
-                target="_blank"
-                rel="noopener noreferrer">
-                NASA LOLA →
-            </a>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <div class="resource-symbol">
-                ◌
-            </div>
-
-            <span class="card-label">
-                CAMERA
-            </span>
-
-            <h3>
-                LROC
-            </h3>
-
-            <p>
-                The Lunar Reconnaissance Orbiter Camera provides
-                detailed observations and imagery of the lunar
-                surface.
-            </p>
-
-            <a
-                href="https://science.nasa.gov/mission/lro/spacecraft-and-instruments/"
-                target="_blank"
-                rel="noopener noreferrer">
-                NASA LROC →
-            </a>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <div class="resource-symbol">
-                ⌁
-            </div>
-
-            <span class="card-label">
-                DATA ARCHIVE
-            </span>
-
-            <h3>
-                Planetary Data System
-            </h3>
-
-            <p>
-                NASA's Planetary Data System provides access
-                to scientific planetary mission datasets.
-            </p>
-
-            <a
-                href="https://science.nasa.gov/mission/lro/data-products/"
-                target="_blank"
-                rel="noopener noreferrer">
-                NASA PDS →
-            </a>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-<!-- ==============================
-     HOW IT WORKS
-================================ -->
-
-<section class="how-section">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            MISSION WORKFLOW
-        </div>
-
-        <h2>
-            How It Works
-        </h2>
-
-    </div>
-
-
-    <div class="workflow">
-
-        <div class="workflow-step">
-
-            <span>01</span>
-
-            <h3>
-                Select
-            </h3>
-
-            <p>
-                Choose a candidate lunar landing site.
-            </p>
-
-        </div>
-
-
-        <div class="workflow-line"></div>
-
-
-        <div class="workflow-step">
-
-            <span>02</span>
-
-            <h3>
-                Analyze
-            </h3>
-
-            <p>
-                Examine terrain, illumination and visibility.
-            </p>
-
-        </div>
-
-
-        <div class="workflow-line"></div>
-
-
-        <div class="workflow-step">
-
-            <span>03</span>
-
-            <h3>
-                Compare
-            </h3>
-
-            <p>
-                Compare multiple candidate locations.
-            </p>
-
-        </div>
-
-
-        <div class="workflow-line"></div>
-
-
-        <div class="workflow-step">
-
-            <span>04</span>
-
-            <h3>
-                Plan
-            </h3>
-
-            <p>
-                Identify promising landing opportunities.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-<!-- ==============================
-     FOOTER
-================================ -->
-
-<footer class="footer">
-
-    <div class="footer-main">
-
-        <div>
-
-            <div class="logo">
-                <span class="logo-mark">◐</span>
-                LUNAR NAVIGATOR
-            </div>
-
-            <p>
-                An independent project created for the
-                NASA Space Apps Challenge 2026.
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <a href="#home">Home</a>
-            <a href="#explore">Explore</a>
-            <a href="#analysis">Analysis</a>
-            <a href="#resources">Resources</a>
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
         <span>
-            NASA Space Apps Challenge 2026
+            Built for lunar exploration.
         </span>
 
-        <span>
-            Data resources: NASA / LRO / LOLA / LROC / PDS
-        </span>
-
-    </div>
-
-</footer>
+    </footer>
 
 
-<script type="module" src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
 </html>
