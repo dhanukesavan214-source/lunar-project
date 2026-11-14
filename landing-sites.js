@@ -7,7 +7,7 @@
     Do not treat scientific analysis values as NASA measurements
     until they have been obtained from and verified against
     NASA/PDS datasets.
-*/
+
 
 
 export const landingSites = [
@@ -157,3 +157,4 @@ export const landingSites = [
     }
 
 ];
+*/
