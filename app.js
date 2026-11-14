@@ -1,423 +1,211 @@
-import { landingSites } from "./data/landing-sites.js";
+/* =========================================================
+   LUNAR LANDING SITE NAVIGATOR
+   NASA SPACE APPS CHALLENGE 2026
+
+   Stage 1:
+   - Landing-site selection
+   - Dynamic coordinates
+   - Dynamic analysis cards
+   ========================================================= */
 
 
-/* =========================================
-   APPLICATION STATE
-========================================= */
+/* ---------- LANDING SITE DATA ---------- */
 
-const state = {
+const landingSites = [
+    {
+        name: "SHACKLETON CRATER",
+        latitude: "-89.90°",
+        longitude: "0.00°",
 
-    selectedSite: null,
+        solarElevation: "—",
+        sunlightWindow: "—",
+        earthVisibility: "—",
+        sunsetTime: "—"
+    },
 
-    compareSiteA: null,
+    {
+        name: "MALAPERT MASSIF",
+        latitude: "-85.99°",
+        longitude: "0.00°",
 
-    compareSiteB: null
+        solarElevation: "—",
+        sunlightWindow: "—",
+        earthVisibility: "—",
+        sunsetTime: "—"
+    },
 
-};
+    {
+        name: "HAWORTH CRATER",
+        latitude: "-87.30°",
+        longitude: "5.00°",
 
+        solarElevation: "—",
+        sunlightWindow: "—",
+        earthVisibility: "—",
+        sunsetTime: "—"
+    },
 
-/* =========================================
-   DOM ELEMENTS
-========================================= */
+    {
+        name: "AMUNDSEN CRATER",
+        latitude: "-84.50°",
+        longitude: "83.00°",
 
-const siteListContainer =
-    document.getElementById("siteListContainer");
+        solarElevation: "—",
+        sunlightWindow: "—",
+        earthVisibility: "—",
+        sunsetTime: "—"
+    },
 
-const siteCount =
-    document.getElementById("siteCount");
+    {
+        name: "DE GERLACHE CRATER",
+        latitude: "-88.00°",
+        longitude: "-88.00°",
 
-const selectedSiteName =
-    document.getElementById("selectedSiteName");
-
-const selectedSiteRegion =
-    document.getElementById("selectedSiteRegion");
-
-const selectedLatitude =
-    document.getElementById("selectedLatitude");
-
-const selectedLongitude =
-    document.getElementById("selectedLongitude");
-
-const terrainValue =
-    document.getElementById("terrainValue");
-
-const illuminationValue =
-    document.getElementById("illuminationValue");
-
-const earthValue =
-    document.getElementById("earthValue");
-
-const communicationValue =
-    document.getElementById("communicationValue");
-
-
-/* =========================================
-   INITIALIZE
-========================================= */
-
-function initialize() {
-
-    renderSiteList();
-
-    setupNavigation();
-
-    setupDate();
-
-    setupResetButton();
-
-}
+        solarElevation: "—",
+        sunlightWindow: "—",
+        earthVisibility: "—",
+        sunsetTime: "—"
+    }
+];
 
 
-initialize();
+/* ---------- ELEMENTS ---------- */
+
+const siteButtons =
+    document.querySelectorAll(".site-button");
+
+const latitudeElement =
+    document.getElementById("latitude");
+
+const longitudeElement =
+    document.getElementById("longitude");
+
+const solarElevationElement =
+    document.getElementById("solarElevation");
+
+const sunlightWindowElement =
+    document.getElementById("sunlightWindow");
+
+const earthVisibilityElement =
+    document.getElementById("earthVisibility");
+
+const sunsetTimeElement =
+    document.getElementById("sunsetTime");
 
 
-/* =========================================
-   RENDER SITE LIST
-========================================= */
+/* ---------- SELECT SITE ---------- */
 
-function renderSiteList() {
+function selectSite(index) {
 
-    siteListContainer.innerHTML = "";
+    const site = landingSites[index];
 
-    siteCount.textContent =
-        String(landingSites.length).padStart(2, "0");
-
-
-    landingSites.forEach((site) => {
-
-        const element =
-            document.createElement("button");
-
-        element.className = "site-item";
-
-        element.type = "button";
-
-        element.innerHTML = `
-
-            <h4>${site.name}</h4>
-
-            <p>
-                ${site.region}
-            </p>
-
-        `;
+    if (!site) {
+        return;
+    }
 
 
-        element.addEventListener(
-            "click",
-            () => selectSite(site, element)
+    /* Update coordinates */
+
+    latitudeElement.textContent =
+        site.latitude;
+
+    longitudeElement.textContent =
+        site.longitude;
+
+
+    /* Update analysis */
+
+    solarElevationElement.textContent =
+        site.solarElevation;
+
+    sunlightWindowElement.textContent =
+        site.sunlightWindow;
+
+    earthVisibilityElement.textContent =
+        site.earthVisibility;
+
+    sunsetTimeElement.textContent =
+        site.sunsetTime;
+
+
+    /* Update selected button */
+
+    siteButtons.forEach((button, buttonIndex) => {
+
+        button.classList.toggle(
+            "active",
+            buttonIndex === index
         );
-
-
-        siteListContainer.appendChild(element);
 
     });
 
-}
 
-
-/* =========================================
-   SELECT SITE
-========================================= */
-
-function selectSite(site, element) {
-
-    state.selectedSite = site;
-
-
-    document
-        .querySelectorAll(".site-item")
-        .forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-
-    if (element) {
-
-        element.classList.add("active");
-
-    }
-
-
-    updateAnalysis(site);
-
-}
-
-
-/* =========================================
-   UPDATE ANALYSIS
-========================================= */
-
-function updateAnalysis(site) {
-
-    selectedSiteName.textContent =
-        site.name;
-
-    selectedSiteRegion.textContent =
-        `${site.region} · ${site.status}`;
-
-
-    selectedLatitude.textContent =
-        formatCoordinate(site.latitude, "N", "S");
-
-
-    selectedLongitude.textContent =
-        formatCoordinate(site.longitude, "E", "W");
-
-
-    terrainValue.textContent =
-        site.terrain ?? "Data unavailable";
-
-
-    illuminationValue.textContent =
-        site.illumination ?? "Data unavailable";
-
-
-    earthValue.textContent =
-        site.earthVisibility ?? "Data unavailable";
-
-
-    communicationValue.textContent =
-        site.communicationWindow ??
-        "Data unavailable";
-
-
-    updateComparison(site);
-
-}
-
-
-/* =========================================
-   COORDINATE FORMATTER
-========================================= */
-
-function formatCoordinate(
-    value,
-    positiveDirection,
-    negativeDirection
-) {
-
-    if (value === null || value === undefined) {
-
-        return "—";
-
-    }
-
-
-    const direction =
-        value >= 0
-            ? positiveDirection
-            : negativeDirection;
-
-
-    return `${Math.abs(value).toFixed(2)}° ${direction}`;
-
-}
-
-
-/* =========================================
-   COMPARISON
-========================================= */
-
-function updateComparison(site) {
-
-    if (!state.compareSiteA) {
-
-        state.compareSiteA = site;
-
-    } else if (
-        state.compareSiteA.id !== site.id &&
-        !state.compareSiteB
-    ) {
-
-        state.compareSiteB = site;
-
-    }
-
-
-    const siteA =
-        state.compareSiteA;
-
-    const siteB =
-        state.compareSiteB;
-
-
-    if (siteA) {
-
-        document.getElementById(
-            "compareA"
-        ).textContent = siteA.name;
-
-
-        document.getElementById(
-            "latA"
-        ).textContent =
-            formatCoordinate(
-                siteA.latitude,
-                "N",
-                "S"
-            );
-
-
-        document.getElementById(
-            "lonA"
-        ).textContent =
-            formatCoordinate(
-                siteA.longitude,
-                "E",
-                "W"
-            );
-
-    }
-
-
-    if (siteB) {
-
-        document.getElementById(
-            "compareB"
-        ).textContent = siteB.name;
-
-
-        document.getElementById(
-            "latB"
-        ).textContent =
-            formatCoordinate(
-                siteB.latitude,
-                "N",
-                "S"
-            );
-
-
-        document.getElementById(
-            "lonB"
-        ).textContent =
-            formatCoordinate(
-                siteB.longitude,
-                "E",
-                "W"
-            );
-
-    }
-
-}
-
-
-/* =========================================
-   DATE
-========================================= */
-
-function setupDate() {
-
-    const dateInput =
-        document.getElementById("missionDate");
-
-
-    if (!dateInput) {
-        return;
-    }
-
-
-    dateInput.addEventListener(
-        "change",
-        () => {
-
-            console.log(
-                "Selected mission date:",
-                dateInput.value
-            );
-
-            /*
-                Later this date will drive:
-
-                - Sun position
-                - Lunar illumination
-                - Earth visibility
-                - Communication windows
-                - Solar power analysis
-            */
-
-        }
+    console.log(
+        "Selected lunar site:",
+        site.name
     );
-
 }
 
 
-/* =========================================
-   RESET VIEW
-========================================= */
+/* ---------- BUTTON EVENTS ---------- */
 
-function setupResetButton() {
-
-    const button =
-        document.getElementById("resetView");
-
-    const model =
-        document.getElementById("moonModel");
-
-
-    if (!button || !model) {
-        return;
-    }
-
+siteButtons.forEach((button, index) => {
 
     button.addEventListener(
         "click",
-        () => {
-
-            model.cameraOrbit =
-                "0deg 75deg 105%";
-
-            model.fieldOfView =
-                "30deg";
-
-        }
+        () => selectSite(index)
     );
 
-}
+});
 
 
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
+/* ---------- INITIAL SITE ---------- */
 
-function setupNavigation() {
-
-    const menuButton =
-        document.getElementById("menuButton");
-
-    const mobileMenu =
-        document.getElementById("mobileMenu");
+selectSite(0);
 
 
-    menuButton.addEventListener(
-        "click",
-        () => {
+/* ---------- SCROLL REVEAL ---------- */
 
-            mobileMenu.classList.toggle(
-                "active"
-            );
-
-        }
-    );
+const sections =
+    document.querySelectorAll(".section");
 
 
-    mobileMenu
-        .querySelectorAll("a")
-        .forEach(link => {
+const observer =
+    new IntersectionObserver(
+        (entries) => {
 
-            link.addEventListener(
-                "click",
-                () => {
+            entries.forEach((entry) => {
 
-                    mobileMenu.classList.remove(
-                        "active"
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "visible"
                     );
 
                 }
-            );
 
-        });
+            });
 
-}
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+sections.forEach((section) => {
+
+    observer.observe(section);
+
+});
+
+
+/* ---------- CONSOLE MESSAGE ---------- */
+
+console.log(
+    "🌙 Lunar Landing Site Navigator initialized."
+);
+
+console.log(
+    "NASA Space Apps Challenge 2026"
+);
